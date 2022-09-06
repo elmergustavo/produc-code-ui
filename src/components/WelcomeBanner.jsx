@@ -1,6 +1,7 @@
 import React from 'react';
-
+import useAuth from '../hooks/useAuth';
 function WelcomeBanner() {
+  const { auth } = useAuth();
   return (
     <div className="relative bg-indigo-200 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
 
@@ -48,7 +49,7 @@ function WelcomeBanner() {
 
       {/* Content */}
       <div className="relative">
-        <h1 className="text-2xl md:text-3xl text-slate-800 font-bold mb-1">Bienvenido a ProductCode 👋</h1>
+        <h1 className="text-2xl md:text-3xl text-slate-800 font-bold mb-1">Bienvenido a ProductCode, {auth.name} 👋</h1>
         <p>Esto es lo que está sucediendo con sus proyectos hoy:</p>
       </div>
 
