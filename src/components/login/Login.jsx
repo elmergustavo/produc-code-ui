@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import Img from "../../assets/img/logo.jpg";
 import Production from "../../assets/img/production.svg";
-
+import clienteAxios from "../../config/clienteAxios";
+import useAuth from "../../hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const {setAuth} = useAuth();
+
+  const navigate = useNavigate()
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,8 +23,23 @@ const Login = () => {
     }
 
     try {
-      // const {data} = await
-    } catch (error) {}
+      console.log(email, password);
+      const { data } = await clienteAxios.post("/user/login", {
+        email,
+        password,
+      });
+      localStorage.setItem('token', data.token)
+      setAuth(data)
+      console.log(data)
+
+      if(data === "Incorrect password"){
+        alert("password incorrecto")
+        return
+      }
+      navigate('/admin')
+    } catch (error) {
+      alert(error.response.data.msg);
+    }
   };
 
   return (
@@ -30,14 +52,14 @@ const Login = () => {
           <img className="w-[400px]  " src={Production} />
         </div>
         <h3 className="text-2xl font-bold  text-left pl-12 ">
-        Bienvenido a productCode👋
+          Bienvenido a productCode👋
         </h3>
         <form
           onSubmit={handleSubmit}
           className="h-screen flex flex-col p-12 gap-5"
         >
           <h3 className="text-2xl font-medium text-left">
-          Ingrese a su cuenta
+            Ingrese a su cuenta
           </h3>
           <div className="flex flex-col items-start gap-1">
             <label className="font-medium text-sm" type="email">
@@ -73,7 +95,7 @@ const Login = () => {
             </label>
             <div className="remember_password_right">
               <a className="text-blue-500 text-sm" href="">
-              ¿Contraseña olvidada? 
+                ¿Contraseña olvidada?
               </a>
             </div>
           </div>

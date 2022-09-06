@@ -22,10 +22,13 @@ import {
   Editor,
 } from "./pages";
 
+import {AuthProvider } from "./contexts/AuthProvider"
+
 const App = () => {
   return (
     <>
       <BrowserRouter>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<AuthLayout />}>
             <Route index element={<Login />} />
@@ -59,6 +62,7 @@ const App = () => {
             <Route path="stacked" element={<Stacked />} />
           </Route>
         </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
