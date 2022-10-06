@@ -14,7 +14,9 @@ const AuthProvider = ({children}) => {
                 return
             }
 
-            console.log('si hay token')
+            setAuth({"token": token});
+
+            console.log('si hay token ' + token)
         }
 
         autenticarUsuario()

@@ -24,13 +24,13 @@ const Login = () => {
 
     try {
       console.log(email, password);
-      const { data } = await clienteAxios.post("/user/login", {
+      const { data } = await clienteAxios.post("/user/signIn", {
         email,
         password,
       });
-      localStorage.setItem('token', data.token)
+      localStorage.setItem('token', data.body.token)
       setAuth(data)
-      console.log(data)
+      console.log(data.body.token)
 
       if(data === "Incorrect password"){
         alert("password incorrecto")
