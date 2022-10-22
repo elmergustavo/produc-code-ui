@@ -510,6 +510,14 @@ export const links = [
     title: 'Charts',
     links: [
       {
+        name: 'HeatMap',
+        icon: <AiOutlineStock />,
+      },
+      {
+        name: 'PDFviwer',
+        icon: <AiOutlineStock />,
+      },
+      {
         name: 'line',
         icon: <AiOutlineStock />,
       },

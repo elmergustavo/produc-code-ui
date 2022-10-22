@@ -20,6 +20,8 @@ import {
   ColorPicker,
   ColorMapping,
   Editor,
+  PDFViewer,
+  HeatMap
 } from "./pages";
 
 import { AuthProvider } from "./contexts/AuthProvider";
@@ -55,6 +57,8 @@ const App = () => {
                   <Route path="color-picker" element={<ColorPicker />} />
 
                   {/* charts  */}
+                  <Route path="HeatMap" element={<HeatMap/>} />
+                  <Route path="PDFviwer" element={<PDFViewer/>} />
                   <Route path="line" element={<Line />} />
                   <Route path="area" element={<Area />} />
                   <Route path="bar" element={<Bar />} />
