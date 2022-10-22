@@ -28,17 +28,18 @@ const Login = () => {
         email,
         password,
       });
+      console.log("xdxdxd")
+      console.log(data)
       localStorage.setItem('token', data.body.token)
-      setAuth(data)
-      console.log(data.body.token)
+      localStorage.setItem('id', data.body.id)
 
-      if(data === "Incorrect password"){
-        alert("password incorrecto")
-        return
-      }
+      setAuth(data.body)
+  
+    
       navigate('/admin')
+      
     } catch (error) {
-      alert(error.response.data.msg);
+    
     }
   };
 

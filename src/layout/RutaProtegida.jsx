@@ -26,7 +26,7 @@ import useAuth from "../hooks/useAuth";
 import { useStateContext } from "../contexts/ContextProvider";
 const RutaProtegida = () => {
   const { auth } = useAuth();
-  console.log(auth + "esto es token")
+  console.log("esto es token -----------------------------------" +auth)
   const {
     setCurrentColor,
     setCurrentMode,
@@ -47,7 +47,7 @@ const RutaProtegida = () => {
   }, []);
   return (
     <>
-      {auth.token ? (
+      {auth.id ? (
         <div className={currentMode === "Dark" ? "dark" : ""}>
           <div className="flex relative dark:bg-main-dark-bg">
             <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>

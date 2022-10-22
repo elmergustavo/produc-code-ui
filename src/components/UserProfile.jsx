@@ -8,7 +8,12 @@ import avatar from '../data/avatar.jpg';
 
 const UserProfile = () => {
   const { currentColor } = useStateContext();
-  const { auth } = useAuth();
+  const { auth, cerrarSesion } = useAuth();
+
+  const handleCerrarSesion = () => {
+    cerrarSesion()
+  
+  }
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
       <div className="flex justify-between items-center">
@@ -52,13 +57,23 @@ const UserProfile = () => {
         ))}
       </div>
       <div className="mt-5">
-        <Button
+        {/* <Button
           color="white"
           bgColor={currentColor}
-          text="Logout"
+          text="Cerrar Sesion"
           borderRadius="10px"
           width="full"
-        />
+        /> */}
+        <button
+        onClick={handleCerrarSesion}
+        style={{ backgroundColor: currentColor,
+          borderRadius: "10px",
+          color: "white",
+        }}
+        className='w-full  p-3 hover:drop-shadow-xl'
+        >
+          Cerrar Sesion
+        </button>
       </div>
     </div>
 

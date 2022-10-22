@@ -19,7 +19,7 @@ const ProveedorProvider = ({ children }) => {
 
     obtenerProveedores();
 
-  }, [auth]);
+  },[]);
 
   const submitProveedor = async (proveedor) => {
     try {

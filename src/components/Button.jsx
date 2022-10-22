@@ -1,9 +1,17 @@
 import React from 'react';
 
 import { useStateContext } from '../contexts/ContextProvider';
+import useAuth from "../hooks/useAuth";
 
 const Button = ({ icon, bgColor, color, bgHoverColor, size, text, borderRadius, width }) => {
   const { setIsClicked, initialState } = useStateContext();
+
+  const {cerrarSesion} = useAuth();
+
+  const handleCerrarSesion = () => {
+    cerrarSesion()
+  
+  }
 
   return (
     <button
