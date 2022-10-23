@@ -17,3 +17,4 @@ export { default as Login } from './login/Login';
 export { default as FormProvider } from "./FormProvider"
 export {default as  Modal } from "./Modal"
 export {default as FormRawMaterial } from "./FormRawMaterial"
+export {default as Dialogcomponent } from "./Dialogcomponent"

@@ -15,4 +15,6 @@ export { default as Pie } from './Charts/Pie';
 export { default as Pyramid } from './Charts/Pyramid';
 export { default as Stacked } from './Charts/Stacked';
 export { default as PDFViewer} from './PDFViewer'
-export { default as HeatMap} from './HeatMap'
+export { default as HeatMap} from './HeatMap';
+export { default as Spreadsheet} from './Spreadsheet';
+export { default as DocumentEditor} from './DocumentEditor';

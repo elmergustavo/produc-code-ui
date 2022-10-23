@@ -24,13 +24,13 @@ const Orders = () => {
   const toolbarOptions = ["Search"];
   const [modal, setModal] = useState(false);
   const editing = { allowDeleting: true, allowEditing: true };
-  const { currentColor, activeMenu, setActiveMenu, screenSize } =
+  const { currentColor, currentMode, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
   const { materiaPrima } = useRawMaterial();
   console.log(materiaPrima);
   return (
     <>
-      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+      <div className={`${currentMode === 'Dark' ? 'bg-[#33373E]' : 'bg-[#fff]'} m-2 md:m-10 mt-24 p-2 md:p-10  rounded-3xl`}>
         <Header category="Page" title="Materia Prima" />
         <div className="flex justify-end mb-4">
           <span className="sm:ml-3">
@@ -59,6 +59,7 @@ const Orders = () => {
         </div>
         <GridComponent
           id="gridcomp"
+          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
           dataSource={materiaPrima}
           allowPaging
           allowSorting
@@ -68,13 +69,16 @@ const Orders = () => {
           editSettings={editing}
           toolbar={toolbarOptions}
         >
-          <ColumnsDirective>
+          <ColumnsDirective
+          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+          >
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             {ordersGrid.map((item, index) => (
               <ColumnDirective key={index} {...item} />
             ))}
           </ColumnsDirective>
           <Inject
+          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
             services={[
               Search,
               Resize,
@@ -90,7 +94,7 @@ const Orders = () => {
         </GridComponent>
       </div>
 
-      <Modal modal={modal} setModal={setModal} name="Materia prima">
+      <Modal modal={modal} setModal={setModal} name="Materia prima" size={"sm:max-w-xl"}>
         <FormRawMaterial setModal={setModal}></FormRawMaterial>
       </Modal>
     </>

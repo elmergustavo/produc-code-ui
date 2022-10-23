@@ -11,7 +11,7 @@ const ProveedorProvider = ({ children }) => {
     const obtenerProveedores = async () => {
       try {
         const { data } = await clienteAxios("/supplier/getAllSuppliers");
-        setProveedor(data)
+        setProveedor(data.body)
       } catch (error) {
         console.log(error);
       }

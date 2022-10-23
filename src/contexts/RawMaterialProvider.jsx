@@ -12,8 +12,8 @@ const RawMaterialProvider = ({ children }) => {
         const { data } = await clienteAxios(
           "/rawMaterialRoutes/getAllRawMaterial"
         );
-        console.log(data);
-        setMateriaPrima(data);
+        console.log(data.body);
+        setMateriaPrima(data.body);
       } catch (error) {
         console.log(error);
       }
@@ -24,12 +24,23 @@ const RawMaterialProvider = ({ children }) => {
 
   const submitRawMateria = async (rawMaterial) => {
     try {
+
+      const token = localStorage.getItem("token");
+        if (!token) return;
+
+      const config = {
+        headers: {
+          "x-access-token": `${token}`,
+        },
+      };
+
       const { data } = await clienteAxios.post(
         "/rawMaterialRoutes/createRawMaterial",
-        rawMaterial
+        rawMaterial,
+        config
       );
-      setMateriaPrima([...materiaPrima, data])
-      console.log(data);
+      setMateriaPrima([...materiaPrima, data.body])
+      console.log(data.body);
       alert(data);
     } catch (error) {
       console.log(error);

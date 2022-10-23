@@ -39,7 +39,7 @@ const Login = () => {
       navigate('/admin')
       
     } catch (error) {
-    
+      console.log(error)
     }
   };
 
