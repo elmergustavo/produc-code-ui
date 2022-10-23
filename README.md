@@ -33,12 +33,14 @@ de un producto y sus componentes.
 <div align="center">
 <h1>Tecnologías</h1>
 </div>
-<div style="display: inline_block" align="center">
-  <img align="center" alt="Rafa-Csharp" height="50" width="200" src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E">
-  <img align="center" alt="Rafa-Csharp" height="50" width="200" src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
-  <img align="center" alt="Rafa-Csharp" height="50" width="200" src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge">
-  <img align="center" alt="Rafa-Csharp" height="50" width="200" src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white">
-</div>
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=js,html,css,react,materialui,tailwind,figma" />
+  </a>
+</p>
+
+
 <div align="center">
 <h1>Dependencias</h1>
 </div>
