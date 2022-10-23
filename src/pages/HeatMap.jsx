@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import Area from "./Charts/Area";
 import Bar from "./Charts/Bar";
 import LegendHeatMap from "../components/HeatMap/LegendHeatMap";
+import { FiMaximize2 } from "react-icons/fi";
 import { Modal } from "../components";
 import {
   HeatMapComponent,
@@ -125,7 +126,9 @@ const HeatMap = () => {
       <Modal modal={modal} setModal={setModal} name="Materia prima" size={"sm:max-w-7xl"}>
         <button
         onClick={haldSize}
-        >Amplear</button>
+        >
+          <FiMaximize2 />
+        </button>
         <LegendHeatMap size={size} />
       </Modal>
      
