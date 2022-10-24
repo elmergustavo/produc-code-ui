@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
+import { AiOutlineCalendar, AiOutlineSchedule, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
 import { BiColorFill } from 'react-icons/bi';
@@ -472,11 +472,11 @@ export const links = [
     title: 'Pages',
     links: [
       {
-        name: 'orders',
-        icon: <AiOutlineShoppingCart />,
+        name: 'Materia-Prima',
+        icon: <AiOutlineSchedule />,
       },
       {
-        name: 'employees',
+        name: 'Proveedores',
         icon: <IoMdContacts />,
       },
       {
@@ -875,6 +875,12 @@ export const userProfileData = [
 ];
 
 export const ordersGrid = [
+  {
+    field: '_id',
+    headerText: 'id',
+    width: '100',
+    textAlign: 'Center',
+  },
 
   {
     field: 'name',
@@ -909,12 +915,7 @@ export const ordersGrid = [
     textAlign: 'Center',
     width: '70',
   },
-  {
-    field: '_id',
-    headerText: 'id',
-    width: '100',
-    textAlign: 'Center',
-  },
+  
 
   {
     field: 'createdAt',
@@ -2330,7 +2331,7 @@ export const scheduleData = [
     Location: 'Space Center USA',
     StartTime: '2021-01-10T04:00:00.000Z',
     EndTime: '2021-01-10T05:30:00.000Z',
-    CategoryColor: '#1aaa55',
+    CategoryColor: '#1aaF55',
   },
   {
     Id: 2,

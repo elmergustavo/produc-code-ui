@@ -14,7 +14,7 @@ import { employeesData, employeesGrid } from "../data/dummy";
 import { Header, Modal, FormProvider } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 const Employees = () => {
-  const { currentColor, activeMenu, setActiveMenu, screenSize } =
+  const { currentColor, currentMode, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
   const toolbarOptions = ["Search"];
   const [modal, setModal] = useState(false);
@@ -24,7 +24,7 @@ const Employees = () => {
   console.log(proveedores);
   return (
     <>
-      <div className="m-2 md:m-10 mt-10 p-2 md:p-10 bg-white rounded-2xl">
+      <div className={`${currentMode === 'Dark' ? 'bg-[#33373E]' : 'bg-[#fff]'} m-2 md:m-10 mt-10 p-2 md:p-10 rounded-2xl`}>
         <Header category="Page" title="Proveedores" />
         <div className="flex justify-end mb-4">
           <span className="sm:ml-3">

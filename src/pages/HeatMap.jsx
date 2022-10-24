@@ -76,7 +76,7 @@ const HeatMap = () => {
           },
         }}
         yAxis={{
-          labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+          labels: ["RECIBE", "STOCK", "TOTAL", "PEDIDO", "VENTA", "STOCK NUEVO"],
           textStyle: {
             color: `${currentMode === "Dark" ? "#fff" : "#33373E"}`,
           },

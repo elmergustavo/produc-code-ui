@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   GridComponent,
   ColumnsDirective,
@@ -13,24 +14,39 @@ import {
   Edit,
   Inject,
   Search,
+  Selection
 } from "@syncfusion/ej2-react-grids";
 
 import { ordersData, contextMenuItems, ordersGrid } from "../data/dummy";
-import { Header, Modal, FormRawMaterial } from "../components";
+import { Header, Modal, FormRawMaterial, Notification } from "../components";
 import useRawMaterial from "../hooks/useRawMaterial";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Orders = () => {
-  const toolbarOptions = ["Search"];
-  const [modal, setModal] = useState(false);
+  const selectionsettings = { persistSelection: true };
+  const toolbarOptions = ["Search", "PdfExport"];
+ 
   const editing = { allowDeleting: true, allowEditing: true };
   const { currentColor, currentMode, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
-  const { materiaPrima } = useRawMaterial();
-  console.log(materiaPrima);
+  const { materiaPrima, notify, setNotify, modal, setModal } = useRawMaterial();
+
+  
+
+  let treegrid;
+  const toolbarClick = (args) => {
+    if (treegrid && args.item.text === "PDF Export") {
+      treegrid.pdfExport();
+    }
+  };
+
   return (
     <>
-      <div className={`${currentMode === 'Dark' ? 'bg-[#33373E]' : 'bg-[#fff]'} m-2 md:m-10 mt-24 p-2 md:p-10  rounded-3xl`}>
+      <div
+        className={`${
+          currentMode === "Dark" ? "bg-[#33373E]" : "bg-[#fff]"
+        } m-2 md:m-10 mt-24 p-2 md:p-10  rounded-3xl`}
+      >
         <Header category="Page" title="Materia Prima" />
         <div className="flex justify-end mb-4">
           <span className="sm:ml-3">
@@ -59,18 +75,20 @@ const Orders = () => {
         </div>
         <GridComponent
           id="gridcomp"
-          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+          selectionSettings={selectionsettings}
+          background={currentMode === "Dark" ? "#33373E" : "#fff"}
           dataSource={materiaPrima}
           allowPaging
           allowSorting
           allowExcelExport
-          allowPdfExport
+          allowPdfExport={true}
           contextMenuItems={contextMenuItems}
           editSettings={editing}
           toolbar={toolbarOptions}
+          toolbarClick={toolbarClick}
         >
           <ColumnsDirective
-          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+            background={currentMode === "Dark" ? "#33373E" : "#fff"}
           >
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             {ordersGrid.map((item, index) => (
@@ -78,7 +96,7 @@ const Orders = () => {
             ))}
           </ColumnsDirective>
           <Inject
-          background={currentMode === 'Dark' ? '#33373E' : '#fff'}
+        
             services={[
               Search,
               Resize,
@@ -89,14 +107,25 @@ const Orders = () => {
               ExcelExport,
               Edit,
               PdfExport,
+              Selection,
             ]}
           />
         </GridComponent>
       </div>
 
-      <Modal modal={modal} setModal={setModal} name="Materia prima" size={"sm:max-w-xl"}>
+      <Modal
+        modal={modal}
+        setModal={setModal}
+        name="Materia prima"
+        size={"sm:max-w-xl"}
+      >
         <FormRawMaterial setModal={setModal}></FormRawMaterial>
       </Modal>
+
+      <Notification notify={notify} setNotify={setNotify} />
+
+
+
     </>
   );
 };

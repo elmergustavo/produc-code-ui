@@ -5,6 +5,12 @@ const RawMateriaContext = createContext();
 
 const RawMaterialProvider = ({ children }) => {
   const [materiaPrima, setMateriaPrima] = useState([]);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const obtenerMateriaPrima = async () => {
@@ -40,8 +46,14 @@ const RawMaterialProvider = ({ children }) => {
         config
       );
       setMateriaPrima([...materiaPrima, data.body])
-      console.log(data.body);
-      alert(data);
+
+      setNotify({
+        isOpen: true,
+        message: "Materia Guardado Correctamente",
+        type: "success",
+      });
+      setModal(false);
+     
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +63,11 @@ const RawMaterialProvider = ({ children }) => {
     <RawMateriaContext.Provider
       value={{
         materiaPrima,
-        submitRawMateria
+        submitRawMateria,
+        notify,
+        setNotify,
+        modal,
+        setModal
       }}
     >
       {children}
