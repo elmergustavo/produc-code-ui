@@ -5,7 +5,7 @@ import { Button } from '.';
 import { chatData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 
-const Notification = () => {
+const ModalNotification = () => {
   const { currentColor } = useStateContext();
 
   return (
@@ -35,4 +35,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default ModalNotification;
