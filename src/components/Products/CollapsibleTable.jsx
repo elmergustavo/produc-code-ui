@@ -14,9 +14,19 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
+import EditIcon from "@mui/icons-material/Edit";
+import ControlPointIcon from "@mui/icons-material/ControlPoint";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
+
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+
+  const haldGetId = (id) => {
+    alert(id);
+  };
 
   return (
     <React.Fragment>
@@ -40,9 +50,41 @@ function Row(props) {
         <TableCell align="center">Q. {row.materialCost}</TableCell>
         <TableCell align="center">{row.type}</TableCell>
         <TableCell align="center">{row.stocks}</TableCell>
+        <TableCell align="center">
+          
+          <Stack spacing={1} direction="row">
+            <Button
+              variant="contained"
+              onClick={() => {
+                haldGetId(row._id);
+              }}
+            >
+              <EditIcon />
+            </Button>
+
+            <Button
+              variant="contained"
+              onClick={() => {
+                haldGetId(row._id);
+              }}
+            >
+              <DeleteForeverIcon />
+            </Button>
+
+            <Button
+              variant="contained"
+              onClick={() => {
+                haldGetId(row._id);
+              }}
+            >
+              <ControlPointIcon />
+            </Button>
+          </Stack>
+         
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={10}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
@@ -103,6 +145,7 @@ const CollapsibleTable = ({ products }) => {
             <TableCell align="center">Costo Total de materia prima</TableCell>
             <TableCell align="center">Tipo</TableCell>
             <TableCell align="center">Stock</TableCell>
+            <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

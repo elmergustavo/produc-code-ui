@@ -4,6 +4,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import CollapsibleTable from "../components/Products/CollapsibleTable";
 import useProduct from "../hooks/useProduct";
 
+
 const Products = () => {
   const { currentColor, currentMode, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
@@ -27,7 +28,7 @@ const Products = () => {
               type="button"
               className="text-sm px-5 py-3 w-full md:w-auto rounded-lg uppercase font-bold
               bg-sky-500 text-white text-center mt-5 flex gap-2 items-center justify-center"
-               onClick={() => setModal(true)}
+              onClick={() => setModal(true)}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,13 +47,15 @@ const Products = () => {
           </span>
         </div>
 
+        <CollapsibleTable products={products} />
+
         <Modal
           modal={modal}
           setModal={setModal}
           name="Visualización de Productos"
           size={"sm:max-w-7xl"}
         >
-          <CollapsibleTable products={products} />
+          
         </Modal>
       </div>
     </>
