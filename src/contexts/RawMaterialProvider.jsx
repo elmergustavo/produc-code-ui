@@ -13,26 +13,25 @@ const RawMaterialProvider = ({ children }) => {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    const obtenerMateriaPrima = async () => {
-      try {
-        const { data } = await clienteAxios(
-          "/rawMaterialRoutes/getAllRawMaterial"
-        );
-        console.log(data.body);
-        setMateriaPrima(data.body);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     obtenerMateriaPrima();
   }, []);
 
+  const obtenerMateriaPrima = async () => {
+    try {
+      const { data } = await clienteAxios(
+        "/rawMaterialRoutes/getAllRawMaterial"
+      );
+      console.log(data.body);
+      setMateriaPrima(data.body);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const submitRawMateria = async (rawMaterial) => {
     try {
-
       const token = localStorage.getItem("token");
-        if (!token) return;
+      if (!token) return;
 
       const config = {
         headers: {
@@ -45,7 +44,7 @@ const RawMaterialProvider = ({ children }) => {
         rawMaterial,
         config
       );
-      setMateriaPrima([...materiaPrima, data.body])
+      setMateriaPrima([...materiaPrima, data.body]);
 
       setNotify({
         isOpen: true,
@@ -53,7 +52,6 @@ const RawMaterialProvider = ({ children }) => {
         type: "success",
       });
       setModal(false);
-     
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +65,8 @@ const RawMaterialProvider = ({ children }) => {
         notify,
         setNotify,
         modal,
-        setModal
+        setModal,
+        obtenerMateriaPrima,
       }}
     >
       {children}

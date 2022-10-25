@@ -21,15 +21,24 @@ import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import useProduct from "../../hooks/useProduct";
 import ModalEliminarProduct from "../ModalEliminarProduct";
+import Modal from "../Modal";
+import ModalTableMaterial from "./ModalTableMaterial";
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [modal, setModal] = React.useState(false);
+  const [idProduct, setIdProduct] = React.useState('');
 
-  const {handleModalEliminarProduct } = useProduct();
+  const { handleModalEliminarProduct } = useProduct();
 
   const handleDelete = (name) => {
-    handleModalEliminarProduct(name)
+    handleModalEliminarProduct(name);
+  };
+
+  const handleAddMateriaPrima = (id) => {
+    setIdProduct(id)
+    setModal(true)
   };
 
   return (
@@ -54,9 +63,10 @@ function Row(props) {
         <TableCell align="center">Q. {row.materialCost}</TableCell>
         <TableCell align="center">{row.type}</TableCell>
         <TableCell align="center">{row.stocks}</TableCell>
-        <TableCell align="center">{row.state ? 'Activo' : 'Inactivo'}</TableCell>
         <TableCell align="center">
-          
+          {row.state ? "Activo" : "Inactivo"}
+        </TableCell>
+        <TableCell align="center">
           <Stack spacing={1} direction="row">
             <Button
               variant="contained"
@@ -78,14 +88,13 @@ function Row(props) {
 
             <Button
               variant="contained"
-              // onClick={() => {
-              //   haldGetId(row._id);
-              // }}
+              onClick={() => {
+                handleAddMateriaPrima(row._id);
+              }}
             >
               <ControlPointIcon />
             </Button>
           </Stack>
-         
         </TableCell>
       </TableRow>
       <TableRow>
@@ -131,6 +140,15 @@ function Row(props) {
       </TableRow>
 
       <ModalEliminarProduct />
+      <Modal
+        modal={modal}
+        setModal={setModal}
+        name="Materia prima"
+        size={"sm:max-w-4xl"}
+      >
+
+        <ModalTableMaterial idProduct={idProduct}/>
+      </Modal>
     </React.Fragment>
   );
 }
