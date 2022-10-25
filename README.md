@@ -1,7 +1,7 @@
 <img height="50em" src="https://user-images.githubusercontent.com/42653664/190834136-c7bb4313-f7a1-4827-bc6e-65cfe649dec1.png"/>
 
 <div align="center">
-<h1>Product Code Backend</h1>
+<h1>Product Code Frontend</h1>
 </div>
 <p>
 El proyecto tiene la administración de un cade de suministro, lo cual es importante para toda empresa o industria que pretenda tener un control en la fabricación, calidad y entrega de sus productos. Se abarca proveedores, materia prima, fabrica, inventario, mayoristas y minoristas. Se lleva a cabo la panificación del inventario como los pedidos de reabastecimientos, y los pedidos a clientes. 
