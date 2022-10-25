@@ -27,10 +27,10 @@ import ModalTableMaterial from "./ModalTableMaterial";
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-  const [modal, setModal] = React.useState(false);
+  // const [modal, setModal] = React.useState(false);
   const [idProduct, setIdProduct] = React.useState('');
 
-  const { handleModalEliminarProduct } = useProduct();
+  const { handleModalEliminarProduct, modalMateria, setModalMateria} = useProduct();
 
   const handleDelete = (name) => {
     handleModalEliminarProduct(name);
@@ -38,7 +38,7 @@ function Row(props) {
 
   const handleAddMateriaPrima = (id) => {
     setIdProduct(id)
-    setModal(true)
+    setModalMateria(true)
   };
 
   return (
@@ -98,7 +98,7 @@ function Row(props) {
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={10}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={11}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
@@ -141,8 +141,8 @@ function Row(props) {
 
       <ModalEliminarProduct />
       <Modal
-        modal={modal}
-        setModal={setModal}
+        modal={modalMateria}
+        setModal={setModalMateria}
         name="Materia prima"
         size={"sm:max-w-4xl"}
       >

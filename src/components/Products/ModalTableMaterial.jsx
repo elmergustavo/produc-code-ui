@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import { Button, Input, TextField } from "@mui/material";
 import useRawMaterial from "../../hooks/useRawMaterial";
+import useProduct from "../../hooks/useProduct";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -24,10 +25,14 @@ const rows = [
 
 const ModalTableMaterial = ({ idProduct }) => {
   const { obtenerMateriaPrima, materiaPrima } = useRawMaterial();
-  const [amount, setAmount] = React.useState(0);
+  const { addMaterialProduct } = useProduct();
+  const [amount, setAmount] = React.useState(1);
 
   console.log("Materia prima desde el modal", materiaPrima);
-  console.log(amount, idProduct);
+
+  const handleAddMaterialTheProduct = (idMaterial) => {
+    addMaterialProduct(idProduct, idMaterial, amount);
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -73,7 +78,12 @@ const ModalTableMaterial = ({ idProduct }) => {
 
               <TableCell align="right">
                 {row.state ? (
-                  <Button variant="contained">
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      handleAddMaterialTheProduct(row._id);
+                    }}
+                  >
                     <AddTaskIcon />
                   </Button>
                 ) : (

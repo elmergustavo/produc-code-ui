@@ -11,22 +11,25 @@ const ProductProvider = ({ children }) => {
     type: "",
   });
 
-  const [product, setProduct] = useState('');
+  const [product, setProduct] = useState("");
   const [modal, setModal] = useState(false);
-  const [modalEliminarProduct, setModalEliminarProduct] = useState(false)
+  const [modalMateria, setModalMateria] = useState(false);
+  const [modalEliminarProduct, setModalEliminarProduct] = useState(false);
 
   useEffect(() => {
-    const obtenerProductos = async () => {
-      try {
-        const { data } = await clienteAxios("/product/getAllProduct");
-        setProducts(data.body);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    
 
     obtenerProductos();
   }, []);
+
+  const obtenerProductos = async () => {
+    try {
+      const { data } = await clienteAxios("/product/getAllProduct");
+      setProducts(data.body);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const submitProducto = async (product) => {
     try {
@@ -76,9 +79,29 @@ const ProductProvider = ({ children }) => {
   };
 
   const handleModalEliminarProduct = (nameProduct) => {
-    setProduct(nameProduct)
-    console.log(nameProduct)
+    setProduct(nameProduct);
+    console.log(nameProduct);
     setModalEliminarProduct(!modalEliminarProduct);
+  };
+
+  const addMaterialProduct = async (
+    idProduct,
+    idMaterialPrima,
+    amountMaterial
+  ) => {
+    const { data } = await clienteAxios.put(
+      `/product/AddMaterial/${idProduct}`,
+      { id: idMaterialPrima, amount: amountMaterial }
+    );
+    obtenerProductos();
+    setModalMateria(false);
+    setNotify({
+      isOpen: true,
+      message: "Materia Prima Agregado Correctamente",
+      type: "success",
+    });
+
+   
   };
 
   return (
@@ -94,7 +117,10 @@ const ProductProvider = ({ children }) => {
         handleModalEliminarProduct,
         modalEliminarProduct,
         setModalEliminarProduct,
-        product
+        product,
+        addMaterialProduct,
+        modalMateria,
+        setModalMateria
       }}
     >
       {children}
