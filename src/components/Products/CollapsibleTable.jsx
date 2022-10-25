@@ -19,13 +19,17 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Button } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import useProduct from "../../hooks/useProduct";
+import ModalEliminarProduct from "../ModalEliminarProduct";
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
 
-  const haldGetId = (id) => {
-    alert(id);
+  const {handleModalEliminarProduct } = useProduct();
+
+  const handleDelete = (name) => {
+    handleModalEliminarProduct(name)
   };
 
   return (
@@ -55,9 +59,9 @@ function Row(props) {
           <Stack spacing={1} direction="row">
             <Button
               variant="contained"
-              onClick={() => {
-                haldGetId(row._id);
-              }}
+              // onClick={() => {
+              //   haldGetId(row._id);
+              // }}
             >
               <EditIcon />
             </Button>
@@ -65,7 +69,7 @@ function Row(props) {
             <Button
               variant="contained"
               onClick={() => {
-                haldGetId(row._id);
+                handleDelete(row.name);
               }}
             >
               <DeleteForeverIcon />
@@ -73,9 +77,9 @@ function Row(props) {
 
             <Button
               variant="contained"
-              onClick={() => {
-                haldGetId(row._id);
-              }}
+              // onClick={() => {
+              //   haldGetId(row._id);
+              // }}
             >
               <ControlPointIcon />
             </Button>
@@ -124,6 +128,8 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+
+      <ModalEliminarProduct />
     </React.Fragment>
   );
 }

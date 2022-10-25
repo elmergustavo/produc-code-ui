@@ -14,7 +14,7 @@ export { default as Pie } from './Charts/Pie';
 export { default as ChartsHeader } from './ChartsHeader';
 export { default as Header } from './Header';
 export { default as Login } from './login/Login';
-export { default as FormProvider } from "./FormProvider"
+export { default as FormProvider } from "./Formularios/FormProvider"
 export {default as  Modal } from "./Modal"
-export {default as FormRawMaterial } from "./FormRawMaterial"
+export {default as FormRawMaterial } from "./Formularios/FormRawMaterial"
 export {default as Dialogcomponent } from "./Dialogcomponent"

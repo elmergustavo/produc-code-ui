@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { Header, Modal } from "../components";
+import { Header, Modal, Notification } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 import CollapsibleTable from "../components/Products/CollapsibleTable";
 import useProduct from "../hooks/useProduct";
-
-
+import FormProduct from "../components/Formularios/FormProduct";
 const Products = () => {
   const { currentColor, currentMode, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
 
-  const [modal, setModal] = useState(false);
 
-  const { products } = useProduct();
+  const { products,  notify, setNotify, modal, setModal  } = useProduct();
 
   return (
     <>
@@ -52,11 +50,14 @@ const Products = () => {
         <Modal
           modal={modal}
           setModal={setModal}
-          name="Visualización de Productos"
-          size={"sm:max-w-7xl"}
+          name="Crear Nuevo Producto"
+          size={"sm:max-w-2xl"}
         >
+          <FormProduct />
           
         </Modal>
+
+        <Notification notify={notify} setNotify={setNotify} />
       </div>
     </>
   );

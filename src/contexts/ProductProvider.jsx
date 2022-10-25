@@ -5,6 +5,15 @@ const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
+
+  const [product, setProduct] = useState('');
+  const [modal, setModal] = useState(false);
+  const [modalEliminarProduct, setModalEliminarProduct] = useState(false)
 
   useEffect(() => {
     const obtenerProductos = async () => {
@@ -19,10 +28,73 @@ const ProductProvider = ({ children }) => {
     obtenerProductos();
   }, []);
 
+  const submitProducto = async (product) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const config = {
+        headers: {
+          "x-access-token": `${token}`,
+        },
+      };
+
+      const { data } = await clienteAxios.post(
+        "/product/createProduct",
+        product,
+        config
+      );
+      setProducts([...products, data.body]);
+
+      setNotify({
+        isOpen: true,
+        message: "Producto Guardado Correctamente",
+        type: "success",
+      });
+      setModal(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteProducto = async () => {
+    try {
+      await clienteAxios.delete(`product/deleteProduct/${product}`);
+
+      const { data } = await clienteAxios("/product/getAllProduct");
+      setProducts(data.body);
+
+      setNotify({
+        isOpen: true,
+        message: "Producto Eliminado Correctamente",
+        type: "success",
+      });
+      setModalEliminarProduct(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleModalEliminarProduct = (nameProduct) => {
+    setProduct(nameProduct)
+    console.log(nameProduct)
+    setModalEliminarProduct(!modalEliminarProduct);
+  };
+
   return (
     <ProductContext.Provider
       value={{
         products,
+        submitProducto,
+        notify,
+        setNotify,
+        modal,
+        setModal,
+        deleteProducto,
+        handleModalEliminarProduct,
+        modalEliminarProduct,
+        setModalEliminarProduct,
+        product
       }}
     >
       {children}

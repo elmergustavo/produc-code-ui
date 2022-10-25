@@ -1,35 +1,36 @@
 import { useRef, useState } from "react";
-import { useStateContext } from "../contexts/ContextProvider";
-import useRawMaterial from "../hooks/useRawMaterial";
+import { useStateContext } from "../../contexts/ContextProvider";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import useProduct from "../../hooks/useProduct";
 
-
-export default function FormRawMaterial({ setOpen, setAlert, product }) {
+const FormProduct = ({ setOpen, setAlert, product }) => {
   const formRef = useRef(null);
   const [alertWarnig, setAlertWarnig] = useState(false);
-  const { submitRawMateria } = useRawMaterial();
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
-  const [cost, setCost] = useState("");
-  const [stock, setStock] = useState("");
-  
+  const [type, setType] = useState("");
+  const [status, setStatus] = useState(true);
+  const [stocks, setStocks] = useState("");
+  const [description, setDescription] = useState("");
+  const [deliveryQuantity, setDeliveryQuantity] = useState("");
+
+  const { products, submitProducto, notify, setNotify, modal, setModal } = useProduct();
+
   const { currentColor, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if ([name, category, cost, stock].includes("")) {
+    if ([name, category, type, status, stocks,description, deliveryQuantity].includes("")) {
       setAlertWarnig(true);
 
       return;
     }
 
-    submitRawMateria({ name, stock, category, cost });
-    
+    submitProducto({ name, category, type, status, stocks,description, deliveryQuantity});
   };
-
   return (
     <>
       <Stack sx={{ width: "100%" }} spacing={2}>
@@ -85,7 +86,7 @@ export default function FormRawMaterial({ setOpen, setAlert, product }) {
                   htmlFor="price"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Precio
+                  Tipo
                 </label>
                 <input
                   defaultValue={product?.price}
@@ -93,8 +94,8 @@ export default function FormRawMaterial({ setOpen, setAlert, product }) {
                   name="price"
                   id="price"
                   className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                  value={cost}
-                  onChange={(e) => setCost(e.target.value)}
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
                 />
               </div>
 
@@ -111,9 +112,61 @@ export default function FormRawMaterial({ setOpen, setAlert, product }) {
                   name="title"
                   id="title"
                   className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-                  value={stock}
-                  onChange={(e) => setStock(e.target.value)}
+                  value={stocks}
+                  onChange={(e) => setStocks(e.target.value)}
                 />
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="price"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Estado
+                </label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                >
+                  <option value={true} >Activo</option>
+                  <option value={false}>Inactivo</option>
+                </select>
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="title"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Tiempo de entrega (días)
+                </label>
+                <input
+                  defaultValue={product?.title}
+                  type="text"
+                  name="title"
+                  id="title"
+                  className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                  value={deliveryQuantity}
+                  onChange={(e) => setDeliveryQuantity(e.target.value)}
+                />
+              </div>
+
+              <div className="col-span-6">
+                <label
+                  htmlFor="price"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Descripcion
+                </label>
+                <textarea
+                  type="text"
+                  name="price"
+                  id="price"
+                  className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
               </div>
             </div>
           </div>
@@ -128,8 +181,8 @@ export default function FormRawMaterial({ setOpen, setAlert, product }) {
           </div>
         </div>
       </form>
-
-      
     </>
   );
-}
+};
+
+export default FormProduct;

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import { useStateContext } from "../contexts/ContextProvider";
-import useProveedor from "../hooks/useProveedor";
+import { useStateContext } from "../../contexts/ContextProvider";
+import useProveedor from "../../hooks/useProveedor";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
