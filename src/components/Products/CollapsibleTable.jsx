@@ -54,6 +54,7 @@ function Row(props) {
         <TableCell align="center">Q. {row.materialCost}</TableCell>
         <TableCell align="center">{row.type}</TableCell>
         <TableCell align="center">{row.stocks}</TableCell>
+        <TableCell align="center">{row.state ? 'Activo' : 'Inactivo'}</TableCell>
         <TableCell align="center">
           
           <Stack spacing={1} direction="row">
@@ -151,6 +152,7 @@ const CollapsibleTable = ({ products }) => {
             <TableCell align="center">Costo Total de materia prima</TableCell>
             <TableCell align="center">Tipo</TableCell>
             <TableCell align="center">Stock</TableCell>
+            <TableCell align="center">Estado</TableCell>
             <TableCell align="center">Acciones</TableCell>
           </TableRow>
         </TableHead>

@@ -10,6 +10,7 @@ export default function FormRawMaterial({ setOpen, setAlert, product }) {
   const [alertWarnig, setAlertWarnig] = useState(false);
   const { submitRawMateria } = useRawMaterial();
   const [name, setName] = useState("");
+  const [state, setState] = useState(true);
   const [category, setCategory] = useState("");
   const [cost, setCost] = useState("");
   const [stock, setStock] = useState("");
@@ -26,7 +27,7 @@ export default function FormRawMaterial({ setOpen, setAlert, product }) {
       return;
     }
 
-    submitRawMateria({ name, stock, category, cost });
+    submitRawMateria({ name, stock, category, cost, state });
     
   };
 
@@ -96,6 +97,23 @@ export default function FormRawMaterial({ setOpen, setAlert, product }) {
                   value={cost}
                   onChange={(e) => setCost(e.target.value)}
                 />
+              </div>
+
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="price"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Estado
+                </label>
+                <select
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                >
+                  <option value={true} >Activo</option>
+                  <option value={false}>Inactivo</option>
+                </select>
               </div>
 
               <div className="col-span-6 sm:col-span-3">

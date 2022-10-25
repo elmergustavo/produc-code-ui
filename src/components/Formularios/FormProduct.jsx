@@ -10,7 +10,7 @@ const FormProduct = ({ setOpen, setAlert, product }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [type, setType] = useState("");
-  const [status, setStatus] = useState(true);
+  const [state, setState] = useState(true);
   const [stocks, setStocks] = useState("");
   const [description, setDescription] = useState("");
   const [deliveryQuantity, setDeliveryQuantity] = useState("");
@@ -23,13 +23,13 @@ const FormProduct = ({ setOpen, setAlert, product }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if ([name, category, type, status, stocks,description, deliveryQuantity].includes("")) {
+    if ([name, category, type, state, stocks,description, deliveryQuantity].includes("")) {
       setAlertWarnig(true);
 
       return;
     }
 
-    submitProducto({ name, category, type, status, stocks,description, deliveryQuantity});
+    submitProducto({ name, category, type, state, stocks,description, deliveryQuantity});
   };
   return (
     <>
@@ -125,8 +125,8 @@ const FormProduct = ({ setOpen, setAlert, product }) => {
                   Estado
                 </label>
                 <select
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  value={setState}
+                  onChange={(e) => setState(e.target.value)}
                   className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
                 >
                   <option value={true} >Activo</option>
