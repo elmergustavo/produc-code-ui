@@ -7,7 +7,8 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import useAuth from '../hooks/useAuth';
 import avatar from '../data/avatar.jpg';
-import { Cart, Chat, Notification, UserProfile } from '.';
+import { Cart, Chat, UserProfile } from '.';
+import ModalNotification from './ModalNotification';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
@@ -81,7 +82,7 @@ const Navbar = () => {
 
         {/* {isClicked.cart && (<Cart />)} */}
         {isClicked.chat && (<Chat />)}
-        {isClicked.notification && (<Notification />)}
+        {isClicked.notification && (<ModalNotification />)}
         {isClicked.userProfile && (<UserProfile />)}
       </div>
     </div>

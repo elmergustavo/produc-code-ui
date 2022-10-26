@@ -11,20 +11,20 @@ import {
 import useProveedor from "../hooks/useProveedor";
 
 import { employeesData, employeesGrid } from "../data/dummy";
-import { Header, Modal, FormProvider } from "../components";
+import { Header, Modal, FormProvider, Notification } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 const Employees = () => {
-  const { currentColor, activeMenu, setActiveMenu, screenSize } =
+  const { currentColor, currentMode, activeMenu, setActiveMenu, screenSize } =
     useStateContext();
   const toolbarOptions = ["Search"];
-  const [modal, setModal] = useState(false);
+
   const editing = { allowDeleting: true, allowEditing: true };
 
-  const { proveedores } = useProveedor();
+  const { proveedores, notify, setNotify, modal, setModal } = useProveedor();
   console.log(proveedores);
   return (
     <>
-      <div className="m-2 md:m-10 mt-10 p-2 md:p-10 bg-white rounded-2xl">
+      <div className={`${currentMode === 'Dark' ? 'bg-[#33373E]' : 'bg-[#fff]'} m-2 md:m-10 mt-10 p-2 md:p-10 rounded-2xl`}>
         <Header category="Page" title="Proveedores" />
         <div className="flex justify-end mb-4">
           <span className="sm:ml-3">
@@ -69,9 +69,11 @@ const Employees = () => {
           <Inject services={[Search, Page]} />
         </GridComponent>
       </div>
-      <Modal modal={modal} setModal={setModal} name="Proveedores">
+      <Modal modal={modal} setModal={setModal} name="Proveedores"  size={"sm:max-w-xl"}>
         <FormProvider setModal={setModal}></FormProvider>
       </Modal>
+
+      <Notification notify={notify} setNotify={setNotify} />
     </>
   );
 };

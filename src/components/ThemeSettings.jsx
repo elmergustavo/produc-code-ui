@@ -13,7 +13,7 @@ const ThemeSettings = () => {
     <div className="bg-half-transparent w-screen fixed nav-item top-0 right-0">
       <div className="float-right h-screen dark:text-gray-200  bg-white dark:bg-[#484B52] w-400">
         <div className="flex justify-between items-center p-4 ml-4">
-          <p className="font-semibold text-lg">Settings</p>
+          <p className="font-semibold text-lg">Ajustes</p>
           <button
             type="button"
             onClick={() => setThemeSettings(false)}
@@ -25,7 +25,7 @@ const ThemeSettings = () => {
 
         </div>
         <div className="flex-col border-t-1 border-color p-4 ml-4">
-          <p className="font-semibold text-xl ">Theme Option</p>
+          <p className="font-semibold text-xl ">Opción de tema</p>
 
           <div className="mt-4">
             <input
@@ -39,7 +39,7 @@ const ThemeSettings = () => {
             />
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="light" className="ml-2 text-md cursor-pointer">
-              Light
+              Claro
             </label>
           </div>
           <div className="mt-2">
@@ -54,12 +54,12 @@ const ThemeSettings = () => {
             />
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="dark" className="ml-2 text-md cursor-pointer">
-              Dark
+              Oscuro
             </label>
           </div>
         </div>
         <div className="p-4 border-t-1 border-color ml-4">
-          <p className="font-semibold text-xl ">Theme Colors</p>
+          <p className="font-semibold text-xl ">Colores del tema</p>
           <div className="flex gap-3">
             {themeColors.map((item, index) => (
               <TooltipComponent key={index} content={item.name} position="TopCenter">
