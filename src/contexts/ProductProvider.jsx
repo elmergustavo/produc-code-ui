@@ -13,12 +13,12 @@ const ProductProvider = ({ children }) => {
 
   const [product, setProduct] = useState("");
   const [modal, setModal] = useState(false);
+  const [viewOrder, setViewOrder] = useState([]);
+  const [viewMatriz, setViewMatriz] = useState([]);
   const [modalMateria, setModalMateria] = useState(false);
   const [modalEliminarProduct, setModalEliminarProduct] = useState(false);
 
   useEffect(() => {
-    
-
     obtenerProductos();
   }, []);
 
@@ -100,8 +100,47 @@ const ProductProvider = ({ children }) => {
       message: "Materia Prima Agregado Correctamente",
       type: "success",
     });
+  };
 
-   
+  const ViewOrder = async (idProduct) => {
+    try {
+      const { data } = await clienteAxios(
+        `/productOrder/specificOrders/${idProduct}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createOrderProduct = async (newOrder) => {
+    try {
+      const { data } = await clienteAxios.post(
+        `/productOrder/CreateProductOrder`,
+        newOrder
+      );
+
+      console.log(data.body);
+      setNotify({
+        isOpen: true,
+        message: "Orden creado Correctamente",
+        type: "success",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMatrizProduct = async (idProduct) => {
+    try {
+      const { data } = await clienteAxios(
+        `/productOrder/dataMatrix/${idProduct}`
+      );
+
+      console.log(data.body);
+      setViewMatriz(data.body);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -120,7 +159,12 @@ const ProductProvider = ({ children }) => {
         product,
         addMaterialProduct,
         modalMateria,
-        setModalMateria
+        setModalMateria,
+        ViewOrder,
+        createOrderProduct,
+        getMatrizProduct,
+        viewMatriz,
+        setViewMatriz
       }}
     >
       {children}

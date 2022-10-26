@@ -125,7 +125,7 @@ const FormProduct = ({ setOpen, setAlert, product }) => {
                   Estado
                 </label>
                 <select
-                  value={setState}
+                  value={state}
                   onChange={(e) => setState(e.target.value)}
                   className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
                 >

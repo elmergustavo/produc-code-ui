@@ -40,7 +40,7 @@ const Products = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              Agregar Materia prima
+              Crear un nuevo Producto
             </button>
           </span>
         </div>

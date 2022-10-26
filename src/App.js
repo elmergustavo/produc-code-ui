@@ -31,6 +31,7 @@ import { ProveedorProvider } from "./contexts/ProveedorProvider";
 import { RawMaterialProvider } from "./contexts/RawMaterialProvider";
 import { ProductProvider } from "./contexts/ProductProvider";
 import Products from "./pages/Products";
+import OrdenarProduct from "./pages/OrdenarProduct";
 const App = () => {
   return (
     <>
@@ -54,7 +55,8 @@ const App = () => {
                     <Route path="Materia-Prima" element={<Orders />} />
                     <Route path="Proveedores" element={<Employees />} />
                     <Route path="Productos" element={<Products />} />
-                    <Route path="customers" element={<Customers />} />
+                    <Route path="Ordenar-Producto" element={<OrdenarProduct />} />
+                    <Route path="Usuarios" element={<Customers />} />
 
                     {/* apps  */}
                     <Route path="kanban" element={<Kanban />} />

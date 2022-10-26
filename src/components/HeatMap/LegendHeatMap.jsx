@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   HeatMapComponent,
   Inject,
@@ -6,27 +6,29 @@ import {
   Tooltip,
   Adaptor,
 } from "@syncfusion/ej2-react-heatmap";
-const LegendHeatMap = ({size}) => {
+
+import useProduct from "../../hooks/useProduct";
+const LegendHeatMap = ({ size, idProduct }) => {
+  console.log(idProduct);
+
+  const { getMatrizProduct, viewMatriz } = useProduct();
   const heatmapData = [
-    [73, 39, 26, 39, 94, 0],
-    [93, 58, 53, 38, 26, 68],
-    [99, 28, 22, 4, 66, 90],
-    [14, 26, 97, 69, 69, 3],
-    [7, 46, 47, 47, 88, 6],
-    [41, 55, 73, 23, 3, 79],
-    [56, 69, 21, 86, 3, 33],
-    [45, 7, 53, 81, 95, 79],
-    [60, 77, 74, 68, 88, 51],
-    [25, 25, 10, 12, 78, 14],
-    [25, 56, 55, 58, 12, 82],
-    [74, 33, 88, 23, 86, 59],
+    [0, 12, 12, 3, 3, 9],
+    [3, 9, 12, 3, 3, 9],
+    [3, 9, 12, 6, 5, 7],
+    [6, 7, 13, 3, 3, 10],
+    [3, 10, 13, 3, 3, 10],
   ];
+
+  useEffect(() => {
+    getMatrizProduct(idProduct);
+  }, []);
   return (
     <HeatMapComponent
       width={size}
       id="heatmap"
       titleSettings={{
-        text: "Sales Revenue per Employee (in 1000 US$)",
+        text: "Tabla de Distribución",
         textStyle: {
           size: "15px",
           fontWeight: "500",
@@ -36,22 +38,22 @@ const LegendHeatMap = ({size}) => {
       }}
       xAxis={{
         labels: [
-          "Nancy",
-          "Andrew",
-          "Janet",
-          "Margaret",
-          "Steven",
-          "Michael",
-          "Robert",
-          "Laura",
-          "Anne",
-          "Paul",
-          "Karin",
-          "Mario",
+          "16/10/22",
+          "17/10/2022",
+          "18/10/2022",
+          "19/10/2022",
+          "20/10/2022",
+          "21/10/2022",
+          "22/10/2022",
+          "23/10/2022",
+          "24/10/2022",
+          "25/10/2022",
+          "26/10/2022",
+          "27/10/2022",
         ],
       }}
       yAxis={{
-        labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+        labels: ["RECIBE", "STOCK", "TOTAL", "PEDIDO", "VENTA", "STOCK NUEVO"],
       }}
       paletteSettings={{
         palette: [

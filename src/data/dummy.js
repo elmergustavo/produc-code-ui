@@ -532,7 +532,11 @@ export const links = [
         icon: <AiOutlinePlus />,
       },
       {
-        name: 'customers',
+        name: 'Ordenar-Producto',
+        icon: <RiContactsLine />,
+      },
+      {
+        name: 'Usuarios',
         icon: <RiContactsLine />,
       },
 
